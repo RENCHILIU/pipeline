@@ -1,0 +1,49 @@
+name: Deploy project 
+
+# workflow trigger 
+# https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
+on: 
+  push:
+    branches:
+      - 'testReact'
+
+
+
+# action-> https://github.com/marketplace
+# https://github.com/marketplace/actions/checkout
+# https://github.com/actions/setup-node
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16
+          cache: 'npm'
+      - name: install npm
+        run: npm ci
+      - name: run test
+        run: npm test
+
+# this job which named as deploy will run in parallel 
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16
+          cache: 'npm'
+      - name: install npm
+        run: npm ci
+      - name: build project
+        run: npm run build
+      - name: deploy
+        run: echo "pretend we are deploying the project to server lol"      
+
+        
