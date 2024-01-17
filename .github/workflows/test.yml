@@ -23,10 +23,10 @@ jobs:
         with:
           node-version: 16
           cache: 'npm'
-    - name: install npm
-      run: npm ci
-    - name: run test
-      run: npm test
+      - name: install npm
+        run: npm ci
+      - name: run test
+        run: npm test
 
                   
 
