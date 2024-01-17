@@ -30,6 +30,8 @@ jobs:
 
 # this job which named as deploy will run in parallel 
   deploy:
+    # needs: test 
+    # this line will add a dependency to this job .which is test first 
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
